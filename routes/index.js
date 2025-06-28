@@ -18,7 +18,11 @@ import {
   getAllSales,
   getTotalSalesForEachProduct,
 } from "../controllers/salesController.js";
-import { createUser } from "../controllers/userController.js";
+import {
+  createUser,
+  grantDeletePermission,
+  revokeUserUpdatePermission,
+} from "../controllers/userController.js";
 
 const router = express.Router();
 
@@ -42,5 +46,7 @@ router.post("/suppliers/addSupplier", addSupplier);
 router.get("/suppliers/findSupplier", findSuppliersStartingWithF);
 // user controller
 router.post("/user/createUser", createUser);
+router.put("/user/revokeUpdate", revokeUserUpdatePermission);
+router.put("/user/grantDelete", grantDeletePermission);
 
 export default router;

@@ -43,3 +43,55 @@ export const createUser = async (req, res) => {
     });
   }
 };
+
+export const revokeUserUpdatePermission = async (req, res) => {
+  try {
+    const user = "store_manager";
+    const query = `REVOKE UPDATE ON *.* FROM '${user}'@'localhost';`;
+
+    connection.query(query, (err) => {
+      if (err) {
+        return res.status(500).json({
+          success: false,
+          message: `Error revoking update permission: ${err.message}`,
+        });
+      }
+
+      return res.status(200).json({
+        success: true,
+        message: "Update permission revoked",
+      });
+    });
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
+
+export const grantDeletePermission = async (req, res) => {
+  try {
+    const user = "store_manager";
+    const query = `GRANT DELETE ON Sales TO '${user}'@'localhost';`;
+
+    connection.query(query, (err) => {
+      if (err) {
+        return res.status(500).json({
+          success: false,
+          message: `Error granting delete permission: ${err.message}`,
+        });
+      }
+
+      return res.status(200).json({
+        success: true,
+        message: "Delete permission granted",
+      });
+    });
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
