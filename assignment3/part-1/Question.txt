@@ -1,0 +1,87 @@
+## what is the event loop ? 
+
+- The event loop is what allows Node.js to perform non-blocking I/O operations — despite the fact that a single JavaScript thread is used by default — by offloading operations to the system kernel whenever possible.
+
+	1.  Monitors the call stack and the message queue.
+	2.	Executes tasks from the queue when the stack is empty.
+	3.	Keeps your app responsive by handling asynchronous operations (like network requests, timers, and file I/O).
+
+
+## the components of the event loop
+
+1.	Call Stack:
+Executes your code line by line (functions, operations, etc.). It can only run one thing at a time.
+	2.	Web APIs / Node APIs:
+When you call something async (like setTimeout, fetch, or fs.readFile), it’s handled outside the call stack in these APIs.
+	3.	Callback Queue (Message Queue / Task Queue):
+Once an async task is done, its callback is placed here.
+	4.	Event Loop:
+It checks if the call stack is empty.
+If yes, it pushes the next callback from the queue into the stack to be executed.
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+
+# What is Libuv and What Role Does It Play in Node.js?
+
+- libuv is a multi-platform C library that provides asynchronous I/O and other low-level system functionalities to Node.js.
+- It is a key part of what makes Node.js non-blocking and event-driven.
+-Node.js is written in JavaScript, but under the hood it relies on C/C++ components to interact with the OS.
+- libuv acts as this bridge between JavaScript and the system.
+
+
+Here how is fits : 
+
+1. Your JavaScript App 
+        |
+        v
+2. Nodejs core  (written in js and C++)
+    (eg. fs , net , http )
+        |
+        v
+3. libuv (C library)  thread pool
+        |
+        v
+4. Operating System (os system calls)
+
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+
+## How Does Node.js Handle Asynchronous Operations Under the Hood?
+
+Node.js uses an event loop to handle asynchronous operations. 
+The event loop is a loop that runs continuously and checks for new events to process.
+When an asynchronous operation is initiated, it is added to the event loop's queue.
+The event loop then processes the queue, executing each event in order.
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+
+## What is the Difference Between the Call Stack, Event Queue, and Event Loop in Node.js?   
+
+### Call Stack
+The call stack is a data structure that stores information about the active function calls in a program. It is a stack data structure, which means that it follows the Last In, First Out (LIFO) principle. The call stack is used to keep track of the order in which functions are called and to determine the order in which they should be executed.
+
+### Event Queue
+The event queue is a data structure that stores information about the events that have occurred in a program. It is a queue data structure, which means that it follows the First In, First Out (FIFO) principle. The event queue is used to determine the order in which events should be processed.
+
+### Event Loop
+The event loop is a mechanism that allows the call stack and the event queue to work together. The event loop constantly checks the call stack and the event queue to determine whether there are any functions that need to be executed. If there are, the event loop will execute them.
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+
+## What is the Node.js Thread Pool and How to Set the Thread Pool Size?
+
+The Node.js thread pool is a pool of threads that are used to execute asynchronous operations. The thread pool is used to offload work from the main event loop.
+
+process.env.UV_THREADPOOL_SIZE = 12;
+
+or 
+const os = require('os');
+
+process.env.UV_THREADPOOL_SIZE = os.cpus().length;
+
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+
+## How Does Node.js Handle Blocking and Non-Blocking Code Execution?
+
+Node.js is a single-threaded, non-blocking, asynchronous I/O model.

@@ -1,0 +1,39 @@
+1. What is the Node.js Event Loop? (1 Grade)
+- Nodejs is a single threaded, non-blocking, asynchronous and event driven JavaScript runtime. 
+- the Event loop is mechanism that allows Node.js to handle multiple requests asynchronously.
+
+2. What is Libuv and What Role Does It Play in Node.js? (1 Grade) 
+- libuv is a C++ library that provides a cross-platform asynchronous I/O library used by nodejs to handle non-blocking I/O operations . 
+- it is responsible for handling I/O operations, timers, and other system-level tasks.
+
+3. How Does Node.js Handle Asynchronous Operations Under the Hood? (1 Grade)
+- Node.js uses an event loop to handle asynchronous operations. 
+- When an asynchronous operation is initiated, it is passed to the event loop, which schedules it to be executed at a later time. 
+- The event loop then continues to execute other code while waiting for the asynchronous operation to complete. 
+- Once the operation is complete, the event loop executes the callback function associated with the operation.
+
+
+4. What is the Difference Between the Call Stack, Event Queue, and Event Loop in
+Node.js? (2 Grades)
+- The call stack is a data structure that keeps track of the function calls in a program. 
+- The event queue is a data structure that holds all the events that need to be processed. 
+- The event loop is a mechanism that constantly checks the event queue for new events and executes them when they are ready.
+
+5. What is the Node.js Thread Pool and How to Set the Thread Pool Size? (2 Grades)
+- The Node.js thread pool is a pool of threads that are used to execute blocking I/O operations. 
+- The thread pool size can be set using the UV_THREADPOOL_SIZE environment variable.
+
+6. How Does Node.js Handle Blocking and Non-Blocking Code Execution? (2 Grade)
+- Blocking code execution means that the program will wait for the operation to complete before continuing. 
+- Node.js uses an event loop to handle asynchronous operations. 
+- When an asynchronous operation is initiated, it is passed to the event loop, which schedules it to be executed at a later time. 
+- The event loop then continues to execute other code while waiting for the asynchronous operation to complete. 
+- Once the operation is complete, the event loop executes the callback function associated with the operation.
+
+
+7. What Happens When You Perform File I/O in Node.js? (1 Grade)
+- Node.js uses an event loop to handle asynchronous operations. 
+- Node.js uses libuv to handle non-blocking I/O operations (works on libuv or worker thread not the main thread).
+- When you perform file I/O in Node.js, the operation is passed to the event loop, which schedules it to be executed at a later time. 
+- The event loop then continues to execute other code while waiting for the file I/O operation to complete. 
+- Once the operation is complete, the event loop executes the callback function associated with the operation.
